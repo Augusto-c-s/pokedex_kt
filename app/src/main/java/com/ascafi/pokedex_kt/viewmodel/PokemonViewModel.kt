@@ -4,15 +4,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ascafi.pokedex_kt.domain.Pokemon
 import com.ascafi.pokedex_kt.repository.RepositoryPokemon
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class PokemonViewModel : ViewModel() {
 
     var pokemons = MutableLiveData<List<Pokemon?>>()
 
-    init {
-        Thread(Runnable {
+    fun runThreadPokemon() {
+        GlobalScope.launch(Dispatchers.IO) {
             loadPokemons()
-        }).start()
+        }
     }
 
     private fun loadPokemons() {

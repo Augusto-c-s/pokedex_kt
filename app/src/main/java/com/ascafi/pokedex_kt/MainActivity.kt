@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.pokemons.observe(this, {
             recyclerViewLoad(it)
         })
+        viewModel.runThreadPokemon()
     }
 
     private fun recyclerViewLoad(pokemons: List<Pokemon?>) {
